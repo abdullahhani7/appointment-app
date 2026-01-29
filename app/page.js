@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const fetchDoctors = async () => {
       const doctors = await getDoctors();
-      // console.log(doctors);
+      console.log("doctors: ", doctors);
       setDoctorsList(doctors);
     };
     fetchDoctors();
