@@ -7,20 +7,40 @@ const DoctorsList = ({ doctorsList }) => {
       {doctorsList &&
         doctorsList.map((doctor, idx) => {
           return (
-            <div key={idx}>
+            <div key={idx} className="border border-gray-200 rounded-lg p-3 m-3 ">
               <Image
                 src={doctor.imageURL}
                 width={500}
-                        height={200}
+                height={200}
+                className="h-75 w-full object-cover "
                 alt={doctor.name}
               />
-              <h2>{doctor?.category?.name}</h2>
-              <div>
-                <p>{doctor.name}</p>
-                <p>{doctor.year_of_experience}</p>
-                <p>{doctor.address}</p>
-                <p>{doctor.phone}</p>
-              </div> 
+              <div className="items-baseline flex flex-col">
+                <h2 className="text-lime-600 mt-3 bg-lime-200 rounded-full p-2 text-bold">
+                  {doctor?.category?.name}
+                </h2>
+                <h2 className="mt-2">
+                  <span className="text-lime-600 text-bold">Name: </span>
+                  {doctor.name}
+                </h2>
+                <h2 className="mt-2">
+                  <span className="text-lime-600 text-bold">
+                    Year Of Experience:
+                  </span>
+                  {doctor.year_of_experience}
+                </h2>
+                <h2 className="mt-2">
+                  <span className="text-lime-600 text-bold">Adress: </span>
+                  {doctor.address}
+                </h2>
+                <h2 className="mt-2">
+                  <span className="text-lime-600 text-bold">Phone: </span>
+                  {doctor.phone}
+                </h2>
+                <h2 className="border p-3 border-lime-600 mt-5  hover:bg-lime-300 cursor-pointer hover:scale-110 transition-all ease-in-out">
+                  Book Now
+                </h2>
+              </div>
             </div>
           );
         })}
