@@ -7,12 +7,15 @@ const DoctorsList = ({ doctorsList }) => {
       {doctorsList &&
         doctorsList.map((doctor, idx) => {
           return (
-            <div key={idx} className="border border-gray-200 rounded-lg p-3 m-3 ">
+            <div
+              key={idx}
+              className="border border-gray-200 rounded-lg p-3 m-3 "
+            >
               <Image
                 src={doctor.imageURL}
                 width={500}
                 height={200}
-                className="h-75 w-full object-cover "
+                className="h-75 w-full  "
                 alt={doctor.name}
               />
               <div className="items-baseline flex flex-col">
