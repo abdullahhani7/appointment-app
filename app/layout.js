@@ -16,11 +16,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${outfit.className}   antialiased`}>
-        <div className="md:px-20  shadow-sm">
+      <body className={`${outfit.className} antialiased `}>
+        <div className="md:px-20 shadow-sm">
           <Header />
         </div>
-        {children}
+        <div className="md:px-20">
+            {children}
+        </div>
+      
         <Footer />
       </body>
     </html>
