@@ -71,10 +71,10 @@ const Header = () => {
             <PopoverTrigger asChild>
               <Image
                 src={user.picture}
-                width={40}
-                height={40}
+                width={35}
+                height={35}
                 alt={user.family_name}
-                className="rounded-full"
+                className="rounded-full cursor-pointer"
               />
             </PopoverTrigger>
             <PopoverContent className="w-45 flex flex-col ">
