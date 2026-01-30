@@ -9,6 +9,14 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 const Header = () => {
   const { user, isAuthenticated } = useKindeBrowserClient();
@@ -59,9 +67,35 @@ const Header = () => {
         </div>
 
         {user ? (
-          <LogoutLink> 
-            <Button>Log out</Button>
-          </LogoutLink>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Image
+                src={user.picture}
+                width={40}
+                height={40}
+                alt={user.family_name}
+                className="rounded-full"
+              />
+            </PopoverTrigger>
+            <PopoverContent className="w-45 flex flex-col ">
+              <ul>
+                <ul>
+                  <li className="mt-2 cursor-pointer hover:bg-lime-300 p-2">
+                    My Profile
+                  </li>
+                  <Link
+                    href={"/my-booking"}
+                    className="mt-2 cursor-pointer hover:bg-lime-300 p-2"
+                  >
+                    My Booking
+                  </Link>
+                  <li className="mt-2 cursor-pointer hover:bg-lime-300 p-2">
+                    <LogoutLink> Logout</LogoutLink>
+                  </li>
+                </ul>
+              </ul>
+            </PopoverContent>
+          </Popover>
         ) : (
           <LoginLink>
             <Button>Get Started</Button>

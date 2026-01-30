@@ -2,7 +2,7 @@
 const nextConfig = {
   /* config options here */
   images: {
-    domains: ["unrgeijydsshdhjpumhk.supabase.co"],
+    domains: ["unrgeijydsshdhjpumhk.supabase.co", "lh3.googleusercontent.com"],
   },
 };
 
