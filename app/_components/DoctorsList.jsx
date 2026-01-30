@@ -15,7 +15,7 @@ const DoctorsList = ({ doctorsList }) => {
                 src={doctor.imageURL}
                 width={500}
                 height={200}
-                className="h-75 w-full  "
+                className="h-75 w-full object-contain"
                 alt={doctor.name}
               />
               <div className="items-baseline flex flex-col">

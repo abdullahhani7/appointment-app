@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 
 import { getCategory } from "../_utils/Api";
 import Image from "next/image";
+import Link from "next/link";
 
 const CategorySearch = () => {
   const [categoryList, setCategoryList] = useState([]);
@@ -32,7 +33,8 @@ const CategorySearch = () => {
         {categoryList &&
           categoryList.map((cat, idx) => {
             return (
-              <div
+              <Link
+                href={`/search/${cat.name}`}
                 key={idx}
                 className="flex flex-col p-5 items-center text-center bg-lime-200 rounded-xl cursor-pointer hover:scale-110 transition-all ease-in-out"
               >
@@ -43,7 +45,7 @@ const CategorySearch = () => {
                   alt={cat.name}
                 />
                 <label htmlFor="">{cat.name}</label>
-              </div>
+              </Link>
             );
           })}
       </div>
