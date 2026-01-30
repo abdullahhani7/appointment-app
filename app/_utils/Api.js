@@ -22,10 +22,26 @@ export const getDoctors = async () => {
       id,
       name
     )
-  `)
+  `);
   if (error) {
     console.log("error", error.message);
     return null;
   }
   return data;
+};
+
+export const getDoctorsByCategory = async (categoryName) => {
+  try {
+    const { data, error } = await supabase
+      .from("doctor")
+      .select("*, category!inner(*)")
+      .eq("category.name", categoryName);
+
+    if (error) throw error;
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching doctors by category:", error.message);
+    return [];
+  }
 };

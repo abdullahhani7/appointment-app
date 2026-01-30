@@ -1,15 +1,13 @@
 "use client";
 
+
 import {
-  Command,
-  CommandDialog,
+  Command, 
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
+  CommandList, 
 } from "@/components/ui/command";
 
 import { getCategory } from "@/app/_utils/Api";
@@ -18,6 +16,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 const CategoryList = () => {
+ 
+
   const [categoryList, setCategoryList] = useState([]);
 
   useEffect(() => {
