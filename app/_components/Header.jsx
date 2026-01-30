@@ -1,9 +1,21 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
+import {
+  RegisterLink,
+  LoginLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 const Header = () => {
+  const { user, isAuthenticated } = useKindeBrowserClient();
+  useEffect(() => {
+    console.log("user", user);
+  }, [user]);
+
   const menu = [
     {
       id: 1,
@@ -45,7 +57,16 @@ const Header = () => {
             ))}
           </ul>
         </div>
-        <Button>Get Started</Button>
+
+        {user ? (
+          <LogoutLink> 
+            <Button>Log out</Button>
+          </LogoutLink>
+        ) : (
+          <LoginLink>
+            <Button>Get Started</Button>
+          </LoginLink>
+        )}
       </div>
     </header>
   );
