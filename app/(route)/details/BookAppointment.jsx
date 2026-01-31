@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { bookAppiontment } from "@/app/_utils/Api";
+import { toast } from "sonner";
 
 const BookAppointment = ({ doctor }) => {
   const [date, setDate] = useState(new Date());
@@ -17,14 +19,29 @@ const BookAppointment = ({ doctor }) => {
   const [selectedTime, setSelectedTime] = useState();
 
   const { user } = useKindeBrowserClient();
-  console.log("user", user);
+  //   console.log("user", user);
+
+  const handleBooking = async () => {
+    if (!user || !selectedTime) return;
+
+    const appointmentData = {
+      userName: `${user?.given_name} ${user?.family_name}`,
+      email: user?.email,
+      date,
+      time: selectedTime,
+      doctor_id: doctor?.id,
+    };
+
+    const result = await bookAppiontment(appointmentData);
+    console.log("Booked:", result);
+  };
 
   const pastDay = (day) => {
     return day <= new Date();
   };
 
-  const now = new Date();
-  console.log("now", now);
+  //   const now = new Date();
+  //   console.log("now", now);
 
   const timeList = [];
 
@@ -36,7 +53,7 @@ const BookAppointment = ({ doctor }) => {
   const calcTime = () => {
     for (let i = 10; i <= 12; i++) {
       timeList.push({
-       time: i + ":00 AM"
+        time: i + ":00 AM",
       });
 
       timeList.push({
@@ -92,7 +109,7 @@ const BookAppointment = ({ doctor }) => {
           </div>
           {/* </DialogDescription> */}
         </DialogHeader>
-        <Button disabled={!(date && selectedTime)}>Book Appointment</Button>
+        <Button disabled={!(date && selectedTime)} onClick={() => handleBooking()}>Book Appointment</Button>
       </DialogContent>
     </Dialog>
   );

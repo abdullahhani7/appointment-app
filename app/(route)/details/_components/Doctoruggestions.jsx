@@ -31,7 +31,7 @@ function Doctoruggestions() {
       <div className=" grid-cols-1 md:grid-cols-3 p-3">
         <h1>Suggesstions</h1>
         {doctorsList.slice(0, 5).map((doctor, index) => (
-          <Link key={index} href={`/details/${doctor?.documentId}`}>
+          <Link key={index} href={`/details/${doctor?.id}`}>
             <div className="border rounded-lg p-3 m-3 flex ">
               {doctor?.imageURL && (
                 <Image

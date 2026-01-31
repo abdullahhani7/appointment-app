@@ -63,17 +63,19 @@ export const getDoctorById = async (doctorId) => {
   }
 };
 
-export const bookAppiontment = async (data) => {
+export const bookAppiontment = async (appointmentData) => {
   try {
-    const { data, error } = await supabase
+    const { data: result, error } = await supabase
       .from("appointment")
-      .insert(data)
-      .select();
+      .insert(appointmentData)
+      .select()
+      .single();
+
     if (error) throw error;
 
-    return data;
+    return result;
   } catch (error) {
-    console.error("Error fetching doctors by category:", error.message);
-    return [];
+    console.error("Error booking appointment:", error.message);
+    return null;
   }
 };
