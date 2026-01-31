@@ -9,18 +9,22 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
-const BookAppointment = () => {
+const BookAppointment = ({ doctor }) => {
   const [date, setDate] = useState(new Date());
   const [timeSlot, setTimeSlot] = useState();
   const [selectedTime, setSelectedTime] = useState();
+
+  const { user } = useKindeBrowserClient();
+  console.log("user", user);
 
   const pastDay = (day) => {
     return day <= new Date();
   };
 
   const now = new Date();
-console.log("now",now);
+  console.log("now", now);
 
   const timeList = [];
 
@@ -32,21 +36,21 @@ console.log("now",now);
   const calcTime = () => {
     for (let i = 10; i <= 12; i++) {
       timeList.push({
-        time: i + ":00",
+       time: i + ":00 AM"
       });
 
       timeList.push({
-        time: i + ":30",
+        time: i + ":30 AM",
       });
     }
 
     for (let i = 1; i <= 5; i++) {
       timeList.push({
-        time: i + ":00",
+        time: i + ":00 PM",
       });
 
       timeList.push({
-        time: i + ":30",
+        time: i + ":30 PM",
       });
     }
 
@@ -76,6 +80,7 @@ console.log("now",now);
               <div className="grid grid-cols-3 gap-3 border border-lg p-3">
                 {timeSlot?.map((item, index) => (
                   <h2
+                    key={index}
                     onClick={() => setSelectedTime(item.time)}
                     className={`border text-center hover:bg-lime-300 hover:text-lime-800 cursor-pointer  p-2  rounded-full ${item.time == selectedTime && "bg-lime-300"}   `}
                   >
@@ -87,6 +92,7 @@ console.log("now",now);
           </div>
           {/* </DialogDescription> */}
         </DialogHeader>
+        <Button disabled={!(date && selectedTime)}>Book Appointment</Button>
       </DialogContent>
     </Dialog>
   );

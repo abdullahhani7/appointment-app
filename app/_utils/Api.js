@@ -62,3 +62,18 @@ export const getDoctorById = async (doctorId) => {
     return [];
   }
 };
+
+export const bookAppiontment = async (data) => {
+  try {
+    const { data, error } = await supabase
+      .from("appointment")
+      .insert(data)
+      .select();
+    if (error) throw error;
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching doctors by category:", error.message);
+    return [];
+  }
+};
