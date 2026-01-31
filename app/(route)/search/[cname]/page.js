@@ -7,8 +7,8 @@ import DoctorsList from "@/app/_components/DoctorsList";
 
 const page = () => {
   // const { cname } = React.use(params);
-  const params = useParams();
-  const { cname } = params;
+  const { cname } = useParams();
+   
 
   const [doctorsByCategoryList, setDoctorsByCategoryList] = useState([]);
 

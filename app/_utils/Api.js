@@ -45,3 +45,20 @@ export const getDoctorsByCategory = async (categoryName) => {
     return [];
   }
 };
+
+export const getDoctorById = async (doctorId) => {
+  try {
+    let { data, error } = await supabase
+      .from("doctor")
+      .select("*")
+      .eq("id", doctorId)
+      .single();
+
+    if (error) throw error;
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching doctors by category:", error.message);
+    return [];
+  }
+};
