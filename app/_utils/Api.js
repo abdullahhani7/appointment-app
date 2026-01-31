@@ -79,3 +79,19 @@ export const bookAppiontment = async (appointmentData) => {
     return null;
   }
 };
+
+export const myBookingList = async (email) => {
+  try {
+    let { data, error } = await supabase
+      .from("appointment")
+      .select("*")
+      .eq("email", email);
+
+    if (error) throw error;
+
+    return result;
+  } catch (error) {
+    console.error("Error booking appointment:", error.message);
+    return null;
+  }
+};
