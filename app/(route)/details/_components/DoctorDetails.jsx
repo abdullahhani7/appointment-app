@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { GraduationCap, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import BookAppointment from "../BookAppointment";
 // import BookAppointment from '../BookAppointment'
 function DoctorDetails({ doctor }) {
   //  const {user } =useKindeBrowserClient()
@@ -43,7 +44,7 @@ function DoctorDetails({ doctor }) {
             {doctor?.category?.name}
           </h2>
 
-          {/* <BookAppointment doctor={doctor}/> */}
+          <BookAppointment doctor={doctor}/>
 
           <div>
             <h1 className="text-[25px] font-bold">About</h1>
