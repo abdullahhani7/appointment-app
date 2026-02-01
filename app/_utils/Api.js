@@ -109,3 +109,18 @@ export const getMyBookingList = async (email) => {
     return null;
   }
 };
+
+export const deleteBooking = async (id) => {
+  if (!id) return false;
+
+  try {
+    const { error } = await supabase.from("appointment").delete().eq("id", id);
+
+    if (error) throw error;
+
+    return true;
+  } catch (error) {
+    console.error("Error deleting booking:", error.message);
+    return false;
+  }
+};
