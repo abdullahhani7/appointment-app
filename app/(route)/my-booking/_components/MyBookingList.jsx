@@ -18,19 +18,19 @@ const MyBookingList = ({ bookingList, past, updateAppointment }) => {
   };
 
   return (
-    <div>
+    <div className="h-screen">
       {bookingList.map((item, index) => {
         return (
-          <div key={index} className="flex gap-2 items-cener">
+          <div key={index} className="flex gap-2 items-center">
             <Image
               src={item?.doctor?.imageURL}
               width={150}
               height={120}
               alt="image"
-              className="rounded-full object-cover w-[120] h-[120]"
+              className="rounded-full object-cover w-[120] h-[120] mt-8"
             />
 
-            <div className="mt-15 gap-2 ml-15 w-full">
+            <div className="mt-8 gap-2 ml-15 w-full">
               <h2 className="font-bold flex justify-between items-center">
                 Name : {item?.doctor?.name}
                 {!past && (

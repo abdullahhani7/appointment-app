@@ -32,7 +32,7 @@ const page = () => {
   return (
     <div className="px-4 md:px-10">
       <h2 className="font-bold text-2xl">My Booking</h2>
-      <Tabs defaultValue="account" className="w-full mt-8">
+      <Tabs defaultValue="upcoming" className="w-full mt-8">
         <TabsList className="w-full justify-start">
           <TabsTrigger value="upcoming">UpComing</TabsTrigger>
           <TabsTrigger value="past">Past</TabsTrigger>

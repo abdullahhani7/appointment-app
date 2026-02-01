@@ -16,7 +16,7 @@ function CancelAppointment({ cancelClick }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button>Cancel Appointment</Button>
+        <Button className="bg-[#c70000] hover:bg-[#851212]">Cancel Appointment</Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
