@@ -86,7 +86,18 @@ export const getMyBookingList = async (email) => {
   try {
     let { data, error } = await supabase
       .from("appointment")
-      .select("*")
+      .select(
+        `
+    *,
+    doctor (
+      id,
+      name,
+      imageURL,
+      address,
+      about
+    )
+  `,
+      )
       .eq("email", email)
       .order("created_at", { ascending: false });
 
