@@ -16,20 +16,25 @@ function CancelAppointment({ cancelClick }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className="bg-[#c70000] hover:bg-[#851212]">Cancel Appointment</Button>
+        <Button className="bg-[#c70000] hover:bg-[#851212]">
+          Cancel Appointment
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>Cancel Appointment</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            Are you sure you want to cancel your appointment with this doctor?
+            This action will free up the time slot for other patients.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => cancelClick()}>
-            Continue
+          <AlertDialogCancel>Go Back</AlertDialogCancel>
+          <AlertDialogAction
+            className="bg-[#c70000]! hover:bg-[#851212]! text-white!"
+            onClick={() => cancelClick()}
+          >
+            Confirm
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

@@ -51,11 +51,27 @@ const DoctorsList = ({ doctorsList, heading = "Popular Doctors" }) => {
                 </Link>
               );
             })
-          : [1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
+          : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => (
               <div
+                className="border border-gray-200 rounded-lg p-3 m-3 animate-pulse"
                 key={index}
-                className="h-55 bg-lime-100 m-15 animate-pulse"
-              ></div>
+              >
+                <div className="h-67.5 w-full bg-gray-200 rounded-lg"></div>
+
+                <div className="items-baseline flex flex-col">
+                  <div className="h-8 w-24 bg-gray-200 rounded-full mt-3"></div>
+
+                  <div className="h-5 bg-gray-200 rounded w-3/4 mt-4"></div>
+
+                  <div className="h-5 bg-gray-200 rounded w-2/3 mt-3"></div>
+
+                  <div className="h-5 bg-gray-200 rounded w-5/6 mt-3"></div>
+
+                  <div className="h-5 bg-gray-200 rounded w-1/2 mt-3"></div>
+
+                  <div className="h-12 w-1/3 border border-gray-200 mt-5 rounded-md bg-gray-100"></div>
+                </div>
+              </div>
             ))}
       </div>
     </div>
