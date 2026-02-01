@@ -38,10 +38,18 @@ const page = () => {
           <TabsTrigger value="past">Past</TabsTrigger>
         </TabsList>
         <TabsContent value="upcoming">
-          <MyBookingList bookingList={filterBookingList("upcoming")} />
+          <MyBookingList
+            bookingList={filterBookingList("upcoming")}
+            past={false}
+            updateAppointment={() => myBooking()}
+          />
         </TabsContent>
         <TabsContent value="past">
-          <MyBookingList bookingList={filterBookingList("past")} />
+          <MyBookingList
+            bookingList={filterBookingList("past")}
+            past={true}
+            updateAppointment={() => myBooking()}
+          />
         </TabsContent>
       </Tabs>
     </div>
