@@ -65,7 +65,7 @@ export const getDoctorById = async (doctorId) => {
 
 export const bookAppiontment = async (appointmentData) => {
   try {
-    const { data: result, error } = await supabase
+    const { data, error } = await supabase
       .from("appointment")
       .insert(appointmentData)
       .select()
@@ -73,23 +73,26 @@ export const bookAppiontment = async (appointmentData) => {
 
     if (error) throw error;
 
-    return result;
+    return data;
   } catch (error) {
     console.error("Error booking appointment:", error.message);
     return null;
   }
 };
 
-export const myBookingList = async (email) => {
+export const getMyBookingList = async (email) => {
+  if (!email) return [];
+
   try {
     let { data, error } = await supabase
       .from("appointment")
       .select("*")
-      .eq("email", email);
+      .eq("email", email)
+      .order("created_at", { ascending: false });
 
     if (error) throw error;
 
-    return result;
+    return data;
   } catch (error) {
     console.error("Error booking appointment:", error.message);
     return null;
