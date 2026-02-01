@@ -29,10 +29,10 @@ const CategorySearch = () => {
         <Input type="email" placeholder="Email" />
         <Button type="submit">Subscribe</Button>
       </div>
+
       <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-10">
-        {categoryList &&
-          categoryList.map((cat, idx) => {
-            return (
+        {categoryList.length > 0
+          ? categoryList.map((cat, idx) => (
               <Link
                 href={`/search/${cat.name}`}
                 key={idx}
@@ -44,10 +44,18 @@ const CategorySearch = () => {
                   height={70}
                   alt={cat.name}
                 />
-                <label htmlFor="">{cat.name}</label>
+                <label>{cat.name}</label>
               </Link>
-            );
-          })}
+            ))
+          : [1, 2, 3, 4, 5, 6].map((item) => (
+              <div
+                key={item}
+                className="flex flex-col px-12 py-6 items-center bg-gray-200 rounded-xl animate-pulse"
+              >
+                <div className="w-[70px] h-16 bg-gray-300 rounded-full mb-3"></div>
+                <div className="w-full h-4 bg-gray-300 rounded"></div>
+              </div>
+            ))}
       </div>
     </div>
   );
