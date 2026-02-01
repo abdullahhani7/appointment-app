@@ -13,7 +13,7 @@ const page = () => {
     if (!user?.email) return;
 
     const userBookingList = await getMyBookingList(user.email);
-    console.log("userBookingList", userBookingList);
+    // console.log("userBookingList", userBookingList);
     setBookingList(userBookingList);
   };
 

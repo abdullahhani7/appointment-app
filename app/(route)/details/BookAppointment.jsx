@@ -47,7 +47,7 @@ const BookAppointment = ({ doctor }) => {
 
   useEffect(() => {
     calcTime();
-    console.log("timeList", timeList);
+    // console.log("timeList", timeList);
   }, []);
 
   const calcTime = () => {
@@ -109,7 +109,12 @@ const BookAppointment = ({ doctor }) => {
           </div>
           {/* </DialogDescription> */}
         </DialogHeader>
-        <Button disabled={!(date && selectedTime)} onClick={() => handleBooking()}>Book Appointment</Button>
+        <Button
+          disabled={!(date && selectedTime)}
+          onClick={() => handleBooking()}
+        >
+          Book Appointment
+        </Button>
       </DialogContent>
     </Dialog>
   );

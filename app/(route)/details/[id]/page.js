@@ -15,7 +15,7 @@ const page = () => {
     const fetchDoctor = async () => {
       const doctorDetails = await getDoctorById(id);
       setDoctor(doctorDetails);
-      console.log("doctorDetails", doctorDetails);
+      // console.log("doctorDetails", doctorDetails);
     };
     fetchDoctor();
   }, []);

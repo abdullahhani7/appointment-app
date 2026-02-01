@@ -21,7 +21,7 @@ import {
 const Header = () => {
   const { user, isAuthenticated } = useKindeBrowserClient();
   useEffect(() => {
-    console.log("user", user);
+    // console.log("user", user);
   }, [user]);
 
   const menu = [
