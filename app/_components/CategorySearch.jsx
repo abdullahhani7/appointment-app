@@ -19,6 +19,7 @@ const CategorySearch = () => {
     };
     fetchData();
   }, []);
+  // console.log("categoryList", categoryList);
 
   return (
     <div className=" flex flex-col items-center mb-10">
@@ -43,7 +44,9 @@ const CategorySearch = () => {
                   width={70}
                   height={70}
                   alt={cat.name}
+                  unoptimized
                 />
+
                 <label>{cat.name}</label>
               </Link>
             ))
