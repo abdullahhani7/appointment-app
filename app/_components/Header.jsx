@@ -33,12 +33,12 @@ const Header = () => {
     {
       id: 2,
       name: "Explore",
-      path: "/explore",
+      path: "#",
     },
     {
       id: 3,
       name: "Contact Us",
-      path: "/contact-us",
+      path: "#",
     },
   ];
 
