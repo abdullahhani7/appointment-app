@@ -43,8 +43,7 @@ const CategorySearch = () => {
                   src={cat.iconURL}
                   width={70}
                   height={70}
-                  alt={cat.name}
-                  unoptimized
+                  alt={cat.name} 
                 />
 
                 <label>{cat.name}</label>
