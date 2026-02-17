@@ -26,18 +26,18 @@ const CategorySearch = () => {
       <h2 className="font-bold text-4xl mt-7 mb-7">
         <span className="text-lime-600">Search</span> Categories
       </h2>
-      <div className="w-full  max-w-sm flex">
+      <div className="w-full px-4 sm:px-0  max-w-sm flex">
         <Input type="email" placeholder="Email" />
         <Button type="submit">Subscribe</Button>
       </div>
 
-      <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-10">
+      <div className="grid gap-3 grid-cols-1  sm:grid-cols-2 md:grid-cols-3 mt-10">
         {categoryList.length > 0
           ? categoryList.map((cat, idx) => (
               <Link
                 href={`/search/${cat.name}`}
                 key={idx}
-                className="flex flex-col p-5 items-center text-center bg-lime-200 rounded-xl cursor-pointer hover:scale-110 transition-all ease-in-out"
+                className="flex flex-col sm:p-5  p-10 items-center text-center bg-lime-200 rounded-xl cursor-pointer hover:scale-110 transition-all ease-in-out"
               >
                 <Image
                   src={cat.iconURL}

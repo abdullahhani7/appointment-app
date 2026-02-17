@@ -35,7 +35,7 @@ const DoctorsList = ({ doctorsList, heading = "Popular Doctors" }) => {
                       </h2>
                       <h2 className="mt-2">
                         <span className="text-lime-600 text-bold">
-                          Adress:{" "}
+                          Adress: 
                         </span>
                         {doctor.address}
                       </h2>
