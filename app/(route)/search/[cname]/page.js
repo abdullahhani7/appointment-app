@@ -24,7 +24,7 @@ const page = () => {
   // console.log(cname);
 
   return (
-    <div className="mt-3">
+    <div className="mt-3  ">
       <DoctorsList doctorsList={doctorsByCategoryList} heading={cname} />
     </div>
   );

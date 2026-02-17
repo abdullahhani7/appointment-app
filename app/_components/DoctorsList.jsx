@@ -5,8 +5,8 @@ import React from "react";
 const DoctorsList = ({ doctorsList, heading = "Popular Doctors" }) => {
   return (
     <div>
-      <h2 className="font-bold text-xl text-lime-600">{heading}</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <h2 className="font-bold text-xl text-lime-600 ml-3">{heading}</h2>
+      <div className="  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {doctorsList?.length > 0
           ? doctorsList.map((doctor, idx) => {
               return (
