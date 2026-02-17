@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import React, { useState, useMemo } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -14,12 +15,26 @@ import { bookAppiontment } from "@/app/_utils/Api";
 import { toast } from "sonner";
 
 const BookAppointment = ({ doctor }) => {
-  const [date, setDate] = useState(new Date());
-  const [timeSlot, setTimeSlot] = useState();
+  const today = useMemo(() => new Date(), []);
+  const [date, setDate] = useState(today);
   const [selectedTime, setSelectedTime] = useState();
-
   const { user } = useKindeBrowserClient();
-  //   console.log("user", user);
+
+  // Generate time slots once
+  const timeSlot = useMemo(() => {
+    const list = [];
+    for (let i = 10; i <= 12; i++) {
+      list.push({ time: i + ":00 AM" });
+      list.push({ time: i + ":30 AM" });
+    }
+    for (let i = 1; i <= 5; i++) {
+      list.push({ time: i + ":00 PM" });
+      list.push({ time: i + ":30 PM" });
+    }
+    return list;
+  }, []);
+
+  const pastDay = (day) => day <= today;
 
   const handleBooking = async () => {
     if (!user || !selectedTime) return;
@@ -32,59 +47,31 @@ const BookAppointment = ({ doctor }) => {
       doctor_id: doctor?.id,
     };
 
-    const result = await bookAppiontment(appointmentData);
-    console.log("Booked:", result);
-  };
-
-  const pastDay = (day) => {
-    return day <= new Date();
-  };
-
-  //   const now = new Date();
-  //   console.log("now", now);
-
-  const timeList = [];
-
-  useEffect(() => {
-    calcTime();
-    // console.log("timeList", timeList);
-  }, []);
-
-  const calcTime = () => {
-    for (let i = 10; i <= 12; i++) {
-      timeList.push({
-        time: i + ":00 AM",
-      });
-
-      timeList.push({
-        time: i + ":30 AM",
-      });
+    try {
+      const result = await bookAppiontment(appointmentData);
+      console.log("Booked:", result);
+      toast.success("Appointment booked successfully!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to book appointment.");
     }
-
-    for (let i = 1; i <= 5; i++) {
-      timeList.push({
-        time: i + ":00 PM",
-      });
-
-      timeList.push({
-        time: i + ":30 PM",
-      });
-    }
-
-    setTimeSlot(timeList);
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="mt-3 rounded-full">Book Appointment</Button>
+        <Button className="mt-3 rounded-full w-full md:w-auto">
+          Book Appointment
+        </Button>
       </DialogTrigger>
-      <DialogContent>
+
+      <DialogContent className="max-w-lg w-full max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Book Appointment</DialogTitle>
-          {/* <DialogDescription> */}
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="flex">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            {/* Calendar */}
+            <div className="flex justify-center">
               <Calendar
                 mode="single"
                 selected={date}
@@ -93,28 +80,38 @@ const BookAppointment = ({ doctor }) => {
                 disabled={pastDay}
               />
             </div>
-            <div className="mt-5 md:mt-0">
-              <div className="grid grid-cols-3 gap-3 border border-lg p-3">
-                {timeSlot?.map((item, index) => (
-                  <h2
+
+            {/* Time Slots */}
+            <div className="mt-4 md:mt-0">
+              <div className="grid grid-cols-3 gap-3">
+                {timeSlot.map((item, index) => (
+                  <button
                     key={index}
                     onClick={() => setSelectedTime(item.time)}
-                    className={`border text-center hover:bg-lime-300 hover:text-lime-800 cursor-pointer  p-2  rounded-full ${item.time == selectedTime && "bg-lime-300"}   `}
+                    className={`flex items-center justify-center p-2 rounded-full border transition-all duration-200
+                      ${
+                        item.time === selectedTime
+                          ? "bg-lime-400 text-white border-lime-400"
+                          : "bg-white text-black border-gray-300 hover:bg-lime-100 hover:text-lime-800"
+                      }`}
+                    style={{ minHeight: "50px" }}
                   >
                     {item.time}
-                  </h2>
+                  </button>
                 ))}
               </div>
             </div>
           </div>
-          {/* </DialogDescription> */}
+
+          {/* Book Button */}
+          <Button
+            disabled={!(date && selectedTime)}
+            onClick={handleBooking}
+            className="mt-6 w-full"
+          >
+            Book Appointment
+          </Button>
         </DialogHeader>
-        <Button
-          disabled={!(date && selectedTime)}
-          onClick={() => handleBooking()}
-        >
-          Book Appointment
-        </Button>
       </DialogContent>
     </Dialog>
   );
