@@ -32,7 +32,7 @@ const CategorySearch = () => {
       </div>
 
       <div className="grid gap-3 grid-cols-1  sm:grid-cols-2 md:grid-cols-3 mt-10">
-        {categoryList.length > 0
+        {categoryList?.length > 0
           ? categoryList.map((cat, idx) => (
               <Link
                 href={`/search/${cat.name}`}
